@@ -5,7 +5,7 @@ import LandPage from './components/LandPage';
 const App = () => {
   const [theme, setTheme] = useState(false);
   return (
-    <div className={`${theme || `dark container mx-auto h-full`}`}>
+    <div className={`${theme || `dark w-full mx-auto h-screen`}`}>
       {/* Navbar */}
       <Navbar theme={theme} setTheme={setTheme}/>
       <Routes>
