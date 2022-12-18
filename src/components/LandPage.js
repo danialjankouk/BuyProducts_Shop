@@ -4,7 +4,7 @@ import Land2 from "./Land2";
 
 const LandPage = () => {
   return (
-    <div className="dark:bg-slate-800 bg-slate-200">
+    <div className="dark:bg-slate-800 flex flex-col justify-center items-center bg-slate-200">
       <Land1 />
       <Land2 />
     </div>
