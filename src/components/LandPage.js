@@ -2,6 +2,7 @@ import React from "react";
 import Land1 from "./Land1";
 import Land2 from "./Land2";
 import Land3 from "./Land3";
+import Land4 from "./Land4";
 
 const LandPage = () => {
   return (
@@ -9,6 +10,7 @@ const LandPage = () => {
       <Land1 />
       <Land2 />
       <Land3 />
+      <Land4 />
     </div>
   );
 };
