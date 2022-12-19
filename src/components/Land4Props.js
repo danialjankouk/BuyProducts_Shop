@@ -6,7 +6,7 @@ const Land4Props = ({number, text}) => {
             {/* number */}
             <h1 className='font-bold text-white text-xl'>{number}</h1>
             {/* title */}
-            <p className='text-violet-400'>{text}</p>
+            <p className='text-violet-400 text-sm'>{text}</p>
         </div>
     );
 };
