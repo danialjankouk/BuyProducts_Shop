@@ -1,6 +1,7 @@
 import React from "react";
 import Land3Props from "./Land3Props";
-import {AiOutlineArrowLeft} from "react-icons/ai"
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
 const Land3 = () => {
   return (
     <div className="mt-20 flex flex-col ">
@@ -13,8 +14,10 @@ const Land3 = () => {
       </div>
       {/* see more */}
       <div className="flex items-center gap-1 dark:text-violet-400 text-violet-400 font-bold justify-start cursor-pointer">
-        <AiOutlineArrowLeft/>
-        <h1>See More</h1>
+        <AiOutlineArrowLeft />
+        <Link to="/products">
+          <h1>See More</h1>
+        </Link>
       </div>
       {/* components */}
       <div className="grid lg:grid-cols-3 gap-cols-1 gap-28 mt-5">
