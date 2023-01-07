@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shop Products</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+			integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+			crossorigin="anonymous"
+		/>
+		<style>
+			body {
+				background-color: lightgreen;
+			}
+			.container {
+				border: 3px solid #fff;
+				box-shadow: 0 0 2rem #000;
+				border-radius: 1rem;
+				width: 80rem;
+				margin: 2rem auto;
+				padding: 1rem;
+			}
+			.table-box {
+				display: flex;
+				justify-content: space-between;
+			}
+			span.left-table-cont {
+				margin: 0 1rem;
+			}
+			th,
+			td {
+				padding: 1rem;
+			}
+			.center-table {
+				border-collapse: collapse;
+				/* border-spacing: 30px; */
+			}
+			.table-header-row {
+				border-bottom: 5px solid darkslategray;
+			}
+			.table-content-row:not(:last-child) {
+				border-bottom: 1px solid #000;
+			}
+			.deledit-btns {
+				margin: 0.5rem;
+				border-radius: 0.5rem;
+				padding: 0.8rem;
+				color: blue;
+				background-color: #fff;
+			}
+			.deledit-btns:active {
+				color: red;
+			}
+			#action-section {
+				display: flex;
+				justify-content: center;
+			}
+			.buttons-section {
+				text-align: center;
+			}
+			.heading-message {
+				text-align: center;
+				margin: 1rem auto;
+				font-size: 1.5rem;
+			}
+			.img-url-show {
+				max-width: 5rem;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="page-main">
+			<div class="container">
+				<div class="heading-message">
+					<p class="heading-text">
+						You have {{products_numbers}} Products in your Shop.
+					</p>
+				</div>
+				<div class="buttons-section">
+					<a href="{% url 'BP_BE_Home' %}" class="btn btn-primary"
+						>Home</a
+					>
+					<a
+						href="{% url 'BP_BE_AddProduct' %}"
+						class="btn btn-secondary"
+						target="_blank"
+						>Add a Product</a
+					>
+				</div>
+			</div>
+			<div class="container">
+				<table class="center-table">
+					<tr class="table-header-row">
+						<th>id</th>
+						<th>Name</th>
+						<th>Availability</th>
+						<th>Price</th>
+						<th>Image URL</th>
+						<th>Rate</th>
+						<th>Display</th>
+						<th>Resoloution</th>
+						<th>Size</th>
+						<th id="os-row">OS</th>
+						<th id="action-header">Action</th>
+					</tr>
+					{% for product in All_Products %}
+					<tr class="table-content-row">
+						<td>{{product.id}}</td>
+						<td>{{product.product_title}}</td>
+						<td>{{product.product_availability}}</td>
+						<td>{{product.product_price}}</td>
+						<td class="img-url-show">{{product.product_image}}</td>
+						<td>{{product.product_rate}}</td>
+						<td>{{product.product_display}}</td>
+						<td>{{product.product_resoloution}}</td>
+						<td>{{product.product_size}}</td>
+						<td>{{product.product_os}}</td>
+						<td id="action-section">
+							<a
+								href="{% url 'delpro' pk=product.id %}"
+								class="deledit-btns"
+								><i
+									class="fa fa-trash"
+									style="font-size: 16px"
+								></i
+							></a>
+							<a
+								href="{% url 'editpro' pk=product.id %}"
+								class="deledit-btns"
+								><i
+									class="fa-solid fa-pen"
+									style="font-size: 16px"
+								></i
+							></a>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</main>
+	</body>
+</html>

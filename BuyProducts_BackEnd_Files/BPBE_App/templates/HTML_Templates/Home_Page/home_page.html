@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Buy Products Panel</title>
+		<style>
+			body {
+				background-color: lightgreen;
+			}
+			main {
+				margin: 2rem;
+				border: 3px solid #fff;
+				border-radius: 1rem;
+				padding: 1rem;
+				box-shadow: 0 0 2rem #000;
+			}
+			.container {
+				margin: 2rem auto;
+				width: 80rem;
+			}
+			.home-heading {
+				text-align: center;
+				margin: 2rem auto;
+				padding: 1rem;
+				width: 60rem;
+				border: 1px solid black;
+				border-radius: 0.5rem;
+				background-color: skyblue;
+			}
+			.page-navbar {
+				width: 60rem;
+				margin: 0 auto;
+			}
+			.page-routes {
+				list-style-type: none;
+				display: flex;
+				justify-content: space-evenly;
+			}
+			.route-link {
+				text-decoration: none;
+				color: #000;
+				border: 1px solid black;
+				padding: 1rem;
+				border-radius: 0.2rem;
+				transition: all 1s ease;
+			}
+			.route-link:hover {
+				background-color: salmon;
+				font-size: 20pt;
+			}
+			.footer-text {
+				text-align: center;
+			}
+			.github-link {
+				text-decoration: none;
+				color: #000;
+			}
+			.github-link:hover {
+				color: blue;
+			}
+			.middle-text {
+				text-align: center;
+				outline: 1px solid black;
+				width: 40rem;
+				margin: 1rem auto;
+				padding: 1rem;
+				background-color: yellowgreen;
+			}
+			.footer-text {
+				font-size: 1.2rem;
+			}
+		</style>
+		<script defer>
+			console.log("Hello, world!");
+		</script>
+	</head>
+	<body>
+		<main>
+			<header class="page-header">
+				<div class="container">
+					<div class="home-heading">
+						<h1>Buy Products Website | Back-end Panel</h1>
+						<p>Today : {{today}}</p>
+					</div>
+					<nav class="page-navbar">
+						<ul class="page-routes">
+							<li class="each-route">
+								<a
+									href="http://localhost:8000/admin"
+									class="route-link"
+									target="_blank"
+									>Admin Page</a
+								>
+							</li>
+							<li class="each-route">
+								<a
+									href="{% url 'BP_BE_AllProducts' %}"
+									class="route-link"
+									target="_blank"
+									>List Products</a
+								>
+							</li>
+							<li class="each-route">
+								<a
+									href="{% url 'BP_BE_AddProduct' %}"
+									class="route-link"
+									target="_blank"
+									>Add a Product</a
+								>
+							</li>
+							<li class="each-route">
+								<a
+									href="{% url 'BP_BE_AllUsers' %}"
+									class="route-link"
+									target="_blank"
+									>Manage Website Users</a
+								>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			<article>
+				<div class="container">
+					<p class="middle-text">
+						We are a shop, fast,easy, and secure transfer with high
+						quality. This is back-end panel of the shop.
+					</p>
+				</div>
+			</article>
+			<footer>
+				<div class="container">
+					<p class="footer-text">
+						Developed By MohamadMahdy Raeisi |
+						<a
+							href="https://github.com/RedDeadGhost"
+							target="_blank"
+							class="github-link"
+							>RedDeadGhost Github Profile</a
+						>
+					</p>
+				</div>
+			</footer>
+		</main>
+	</body>
+</html>

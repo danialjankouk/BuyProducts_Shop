@@ -2,6 +2,7 @@ import React from "react";
 import Land3Props from "./Land3Props";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Products from "./Products";
 const Land3 = () => {
   return (
     <div className="mt-20 flex flex-col ">
@@ -20,16 +21,8 @@ const Land3 = () => {
         </Link>
       </div>
       {/* components */}
-      <div className="grid lg:grid-cols-3 gap-cols-1 gap-28 mt-5">
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
-        <Land3Props />
+      <div className="h-[20rem] overflow-scroll">
+        <Products />
       </div>
     </div>
   );

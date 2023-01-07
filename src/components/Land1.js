@@ -1,5 +1,6 @@
 import React from "react";
 import ecommerce from "../assets/ecommerce.png";
+import { Link } from "react-router-dom";
 const Land1 = () => {
   return (
     <div className="flex md:flex-row flex-col pt-20 container mx-auto justify-center items-center">
@@ -11,9 +12,11 @@ const Land1 = () => {
         <p className="dark:text-white text-violet-400 md:text-2xl mb-5">
           Find Your Favorite Brands
         </p>
-        <button className="bg-violet-400 p-2 rounded-lg text-white font-bold">
-          Let's Shop
-        </button>
+        <Link to="/products">
+          <button className="bg-violet-400 p-2 rounded-lg text-white font-bold">
+            Let's Shop
+          </button>
+        </Link>
       </div>
       {/* image */}
       <img src={ecommerce} alt="ecommerce" className="w-[50%]" />

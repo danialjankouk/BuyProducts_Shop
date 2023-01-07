@@ -1,4 +1,5 @@
 import React from "react";
+import Products from "./Products";
 import iphone from "../assets/iphone.png";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";

@@ -7,7 +7,6 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Navbar = ({ theme, setTheme }) => {
   const [isNavOpen, setIsNavOpen] = useState(true);
-  console.log(isNavOpen);
   return (
     <div
       className={`dark:bg-slate-800 fixed z-10 bg-slate-200 w-full dark:shadow-violet-400 shadow-md`}
