@@ -1,5 +1,4 @@
 import React from "react";
-import Land3Props from "./Land3Props";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Products from "./Products";
