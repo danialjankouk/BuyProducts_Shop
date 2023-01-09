@@ -20,7 +20,7 @@ const Land3 = () => {
         </Link>
       </div>
       {/* components */}
-      <div className="h-[20rem] overflow-scroll">
+      <div className="h-[80rem] overflow-hidden">
         <Products />
       </div>
     </div>

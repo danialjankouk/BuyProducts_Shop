@@ -19,6 +19,7 @@ const fetchProductsFailure = error => {
         payload: error
     }
 }
+
 export const fetchProducts = () => {
     return (dispatch) => {
         dispatch(fetchProductsRequest());
