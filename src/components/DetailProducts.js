@@ -52,24 +52,27 @@ const DetailProducts = () => {
     window.scrollTo(0, 0);
   }, []); // Another way to call the clearTimer() to start // the countdown is via action event from the // button first we create function to be called // by the button
 
-  const id = useParams();
+  const params = useParams();
   const data = useSelector((state) => state.productsState.products);
-  const prod = data[id.id - 5];
+  const prod = data[params.id - 5];
   return (
     <div className="h-screen pt-20 dark:bg-slate-800 bg-slate-200 flex flex-col justify-center">
       <div key={prod.id}>
-        <div className="flex md:flex-row flex-col items-center justify-center md:justify-around px-5">
+        <div className="flex md:flex-row flex-col mx-auto  items-center justify-center md:justify-around">
           {/* img */}
-          <div className="w-[50%]">
-            <img src={prod.product_image} alt={prod.product_title} />
-          </div>
-
-          {/* offer delay */}
-          <div className="relative bg-violet-500 rounded-md shadow-md px-10  text-white bottom-[25%] left-[10%] -rotate-45">
-            {timer}
+          <div>
+            <img
+              src={prod.product_image}
+              alt={prod.product_title}
+              className="w-[15rem] shadow-xl h-[15rem] md:w-[25rem] md:h-[25rem] rounded-lg"
+            />
           </div>
           {/* add to card */}
-          <div className="w-[30rem] dark:text-violet-400 text-violet-600 h-[20rem] bg-slate-300 rounded-lg shadow-md dark:bg-slate-700 flex flex-col items-center justify-evenly">
+          <div className="md:w-[30rem] mt-10 md:mt-0 w-[20rem] dark:text-violet-400 text-violet-600 h-[20rem] bg-slate-300 rounded-lg shadow-md dark:bg-slate-700 flex flex-col items-center justify-evenly">
+            {/* offer delay */}
+            <div className="bg-violet-500 relative right-[8rem] md:right-[12rem] -rotate-45 rounded-md shadow-md px-10 text-white">
+              {timer}
+            </div>
             {/* detail */}
             <h1 className="font-bold md:text-xl">{prod.product_title}</h1>
             <span>{prod.product_availability} available</span>
@@ -80,7 +83,7 @@ const DetailProducts = () => {
           </div>
         </div>
         {/* product detail */}
-        <div className="flex flex-col justify-center items-center mx-20 rounded-md shadow-md bg-slate-300 dark:bg-slate-700">
+        <div className="flex flex-col w-[20rem] gap-y-5 mx-auto md:w-full mt-5 justify-center items-center rounded-md shadow-md bg-slate-300 dark:bg-slate-700">
           <p className="text-violet-600 dark:text-violet-300 font-bold">
             Display: <span>{prod.product_display}</span>
           </p>

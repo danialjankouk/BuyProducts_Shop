@@ -1,5 +1,4 @@
 import React from "react";
-import Land3Props from "./Land3Props";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Products from "./Products";
@@ -21,7 +20,7 @@ const Land3 = () => {
         </Link>
       </div>
       {/* components */}
-      <div className="h-[20rem] overflow-scroll">
+      <div className="h-[80rem] overflow-hidden">
         <Products />
       </div>
     </div>

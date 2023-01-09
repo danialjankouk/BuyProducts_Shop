@@ -14,24 +14,24 @@ const Products = () => {
     if (!productsState.length) dispatch(fetchProducts());
   }, []);
   return (
-    <div className="h-auto p-2 dark:bg-slate-800 bg-slate-200 grid lg:grid-cols-3 gap-cols-1 gap-28 py-20">
+    <div className="h-auto p-2 items-center dark:bg-slate-800 bg-slate-200 grid lg:grid-cols-3 gap-cols-1 gap-10 py-20">
       {!productsState.length ? (
         // loader
-        <div className="flex justify-center w-[20rem] h-[20rem] item-center h-screen">
-          <img src={Loader} alt="loader" />
+        <div className="flex justify-center dark:text-white text-black h-screen item-center">
+          Loading ...
         </div>
       ) : (
         // products
         productsState.map((data) => (
-          <div key={data.id}>
+          <div key={data.id} className="flex flex-col justify-center mt-5 items-center">
             <Link to={`/products/${data.id}`}>
-              <div className="flex flex-col px-10 bg-slate-300 dark:bg-slate-600 shadow-lg rounded-lg hover:cursor-pointer">
+              <div className="flex flex-col justify-center p-5 items-center w-[20rem] bg-slate-300 dark:bg-slate-600 shadow-lg rounded-lg hover:cursor-pointer">
                 {/* describe */}
                 <div className="flex flex-col justify-around">
                   <img
                     src={data.product_image}
                     alt={data.product_title}
-                    className="w-52"
+                    className="w-52 h-52 rounded-md"
                   />
                   {/* title */}
                   <h1 className="dark:text-white font-bold text-violet-500">
