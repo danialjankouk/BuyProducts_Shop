@@ -16,6 +16,10 @@ class AllProducts_Viewset(viewsets.ModelViewSet):
 
 # my_obj = AllProducts_Viewset()
 
+class AllUsers_Viewset(viewsets.ModelViewSet):
+    queryset = models.ShopUsers_Model.objects.all()
+    serializer_class = serializers.ShopUsers_Serializer
+
 
 class HomePage_View(TemplateView):
     template_name = 'HTML_Templates/Home_Page/home_page.html'
