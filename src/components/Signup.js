@@ -2,6 +2,9 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
+// banner
+import bannerDark from "../assets/bannerDark.jpg";
+import bannerLight from "../assets/bannerLight.jpg";
 
 const saveData = {
   name: "dani",
@@ -19,7 +22,7 @@ const initialValues = {
   phoneNumber: "",
 };
 
-const Signup = () => {
+const Signup = ({ theme }) => {
   const onSubmit = (val) => {
     axios
       .post("", val)
@@ -34,19 +37,19 @@ const Signup = () => {
       .catch((err) => console.log(err.message));
   }, []);
 
-//   const validate = (val) => {
-//     const errors = {};
-//     if (!val.name) {
-//       errors.name = "name in required";
-//     }
-//     if (!val.email) {
-//       errors.email = "email in required";
-//     }
-//     if (!val.password) {
-//       errors.password = "password in required";
-//     }
-//     return errors;
-//   };
+  //   const validate = (val) => {
+  //     const errors = {};
+  //     if (!val.name) {
+  //       errors.name = "name in required";
+  //     }
+  //     if (!val.email) {
+  //       errors.email = "email in required";
+  //     }
+  //     if (!val.password) {
+  //       errors.password = "password in required";
+  //     }
+  //     return errors;
+  //   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
@@ -79,13 +82,25 @@ const Signup = () => {
   });
 
   return (
-    <div className="flex dark:bg-slate-800 bg-slate-200 rounded h-screen justify-center items-center">
-      <form onSubmit={formik.handleSubmit} className="flex justify-center items-center flex-col dark:bg-slate-600 p-10 rounded-lg shadow-md shadow-violet-500">
-        <h1 className="text-2xl text-violet-400 font-bold">Signup</h1>
-        <div className="flex text-violet-400 flex-col">
+    <div className="flex w-full  bg-slate-200 rounded h-full justify-center items-center">
+      {/* banner */}
+      <div className="">
+        <img
+          src={!theme ? bannerDark : bannerLight}
+          alt="banner"
+          className="min-h-[60rem]"
+        />
+      </div>
+      {/* forms */}
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex absolute backdrop-filter backdrop-opacity-90 backdrop-blur-md backdrop-contrast-200 justify-center items-center flex-col  p-10 rounded-lg shadow-md shadow-violet-500"
+      >
+        <h1 className="text-2xl text-transparent bg-clip-text bg-gradient-to-r dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 from-green-500 to-blue-500 font-bold">Signup</h1>
+        <div className="flex dark:text-violet-200 text-violet-400 flex-col">
           <label>Name</label>
           <input
-            className="text-black"
+            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
             type="text"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -98,10 +113,10 @@ const Signup = () => {
             </div>
           )}
         </div>
-        <div className="flex text-violet-400  flex-col">
+        <div className="flex dark:text-violet-200 text-violet-400 flex-col">
           <label>Email</label>
           <input
-            className="text-black"
+            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
             type="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -114,14 +129,14 @@ const Signup = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-col text-violet-400 ">
+        <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>Password</label>
           <input
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
             onBlur={formik.handleBlur}
-            className="text-black"
+            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
             id="password"
           />
           {formik.errors.password && formik.touched.password && (
@@ -130,14 +145,14 @@ const Signup = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-col text-violet-400 ">
+        <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>confirm Password</label>
           <input
             type="password"
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
             onBlur={formik.handleBlur}
-            className="text-black"
+            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
             id="confirmPassword"
           />
           {formik.errors.confirmPassword && formik.touched.confirmPassword && (
@@ -146,14 +161,14 @@ const Signup = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-col text-violet-400 ">
+        <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>phoneNumber</label>
           <input
             type="text"
             onChange={formik.handleChange}
             value={formik.values.phoneNumber}
             onBlur={formik.handleBlur}
-            className="text-black"
+            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
             id="phoneNumber"
           />
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
@@ -167,7 +182,7 @@ const Signup = () => {
         <button
           type="submit"
           disabled={!formik.isValid}
-          className="bg-slate-800 cursor-pointer text-violet-300 p-1 px-2 mt-5 rounded-md"
+          className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-400 to-blue-500 cursor-pointer dark:text-violet-200 text-violet-50 p-1 px-2 mt-5 rounded-md"
         >
           submit
         </button>

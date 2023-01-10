@@ -5,7 +5,7 @@ import {AiFillInstagram} from "react-icons/ai"
 import {MdEmail} from "react-icons/md"
 const Footer = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center bg-slate-300 dark:bg-slate-900">
+    <div className="flex flex-col absolute md:flex-row justify-between items-center bg-slate-300 dark:bg-slate-900">
         {/* about */}
       <div className="md:w-[50%]">
         <p className="text-violet-500 text-justify p-3">
