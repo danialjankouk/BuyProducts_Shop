@@ -22,6 +22,7 @@ import BPBE_App.views
 
 router = DefaultRouter()
 router.register(r'products', BPBE_App.views.AllProducts_Viewset)
+router.register(r'adduser', BPBE_App.views.AllUsers_Viewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
