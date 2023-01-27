@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.core.cache import cache
+from rest_framework.response import Response
+from rest_framework import status
 from datetime import datetime
 from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView
 from django.views.generic.edit import DeleteView
@@ -19,7 +22,26 @@ class AllProducts_Viewset(viewsets.ModelViewSet):
 class AllUsers_Viewset(viewsets.ModelViewSet):
     queryset = models.ShopUsers_Model.objects.all()
     serializer_class = serializers.ShopUsers_Serializer
+    http_method_names = ['get', 'post', 'put', 'delete']
+    session_id = 'modify-users'
 
+    def create(self, request):
+        users_we_have = []
+        for users_all in self.queryset:
+            users_we_have.append(users_all.user_usname)
+        if request.data['user_usname'] not in users_we_have:
+            obj = super().create(request)
+            print("---- Create ----")
+            return obj
+        elif request.data['user_usname'] in users_we_have:
+            print("---- NOT Create ----")
+            return Response("This user already exists.", status=status.HTTP_400_BAD_REQUEST)
+        # --------------
+        # user_id = request.data['id']
+        # package = models.ShopUsers_Model.objects.get(id=user_id)
+        # self.queryset.get_or_create(session_id=self.session_id, package=package)
+        # cache.delete('adduser:{}'.format(self.session_id))
+        # return Response('User was added', status=200)
 
 class HomePage_View(TemplateView):
     template_name = 'HTML_Templates/Home_Page/home_page.html'
