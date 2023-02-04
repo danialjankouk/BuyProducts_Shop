@@ -1,0 +1,23 @@
+form input {
+    background-color: rgb(196 181 253);
+    color: rgb(99 102 241);
+}
+input.valid+p {
+    color: rgb(32, 0, 128)
+}
+
+input.invalid+p {
+    color: rgb(101, 10, 137)
+}
+
+input+p {
+    font-size: 14px;
+    opacity: 0;
+    height: 0;
+    color: red;
+}
+
+input.invalid+p {
+    opacity: 1;
+    height: auto;
+}

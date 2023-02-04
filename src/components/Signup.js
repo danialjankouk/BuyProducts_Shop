@@ -3,29 +3,50 @@ import { useState } from "react";
 // banner
 import bannerDark from "../assets/bannerDark.jpg";
 import bannerLight from "../assets/bannerLight.jpg";
-
+//alert
+import Swal from "sweetalert2";
+//css
+import "./Validation.css";
 const Signup = ({ theme }) => {
   //data state
   const [data, setData] = useState({
-    user_usname: "",
-    user_email: "",
-    user_password: "",
-    user_phone_number: "",
+    username: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
   });
-  const changeHandler = (event) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-    console.log(data);
-  };
-  const onSubmit = () => {
+  const axiosData = JSON.stringify({
+    user_usname: data.username,
+    user_email: data.email,
+    user_password: data.password,
+    user_phone_number: data.phoneNumber,
+  });
+
+  const postHandler = () => {
     axios
-      .post("http://localhost:8000/api/adduser/", {
-        user_usname: data.user_usname,
-        user_email: data.user_email,
-        user_password: data.user_password,
-        user_phone_number: data.user_phone_number,
+      .post("http://localhost:8000/api/adduser/", axiosData, {
+        headers: { "Content-Type": "application/json" },
       })
-      .then((res) => res.data)
-      .catch((err) => console.log(err, "error dari"));
+      .then(
+        (res) =>
+          res.data &&
+          Swal.fire({
+            icon: "success",
+            title: "Good Job",
+            text: "You have Joined Us!",
+            width: "20rem",
+          })
+      )
+      .catch(
+        (err) =>
+          err.message &&
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            width: "20rem",
+          })
+      );
   };
   //Regex
   const patterns = {
@@ -35,23 +56,23 @@ const Signup = ({ theme }) => {
     phoneNumber: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
   };
   //validation
-  const validate = (field, regex) => {
-    if (field.target.value) {
-      if (regex.test(field.target.value)) {
-        field.target.className = "valid";
+  const validate = (event, regex) => {
+    if (event.target.value) {
+      if (regex.test(event.target.value)) {
+        event.target.className = "valid";
       } else {
-        field.target.className = "invalid";
+        event.target.className = "invalid";
       }
     } else {
-      field.target.className = "";
+      event.target.className = "";
     }
   };
   //does it complete?
   const isEnable =
-    data.user_usname.length > 0 &&
-    data.user_phone_number.length > 0 &&
-    data.user_email.length > 0 &&
-    data.user_password.length > 0;
+    data.username.length > 0 &&
+    data.phoneNumber.length > 0 &&
+    data.email.length > 0 &&
+    data.password.length > 0;
   return (
     <div className="flex w-full bg-slate-200 rounded h-full justify-center items-center">
       {/* banner */}
@@ -71,74 +92,75 @@ const Signup = ({ theme }) => {
         <h1 className="text-2xl text-transparent bg-clip-text bg-gradient-to-r dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 from-green-500 to-blue-500 font-bold">
           Signup
         </h1>
-        <div className="flex dark:text-violet-200 text-violet-400 flex-col">
-          <label>Name</label>
+        <div className="flex flex-col">
+          <label className="dark:text-violet-200 text-violet-400">Name</label>
           <input
-            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
-            name="user_usname"
+            name="username"
             type="text"
-            value={data.user_usname}
-            onChange={changeHandler}
+            value={data.username}
+            onChange={(event) =>
+              validate(event, patterns.name, setData({ ...data, [event.target.name]: event.target.value }))
+            }
           />
           {/* error */}
-          {/* <div className="dark:text-violet-300 text-slate-600 absolute mt-6 ml-2">
-            name must contain 3 - 12 characters and A-Z
-          </div> */}
+          <p className="text-violet-300 absolute mt-14 px-1 bg-violet-100">
+            must contain 3 - 12 characters
+          </p>
         </div>
         <div className="flex dark:text-violet-200 text-violet-400 flex-col">
           <label>Email</label>
           <input
-            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
-            name="user_email"
-            type="email"
-            value={data.user_email}
-            onChange={changeHandler}
+            name="email"
+            type="text"
+            value={data.email}
+            onChange={(event) =>
+              validate(event, patterns.email, setData({ ...data, [event.target.name]: event.target.value }))
+            }
           />
-          {/* <div className="dark:text-violet-300 text-slate-600 absolute mt-6 ml-2">
-            Email must be a valid email address.
-          </div> */}
+          <p className="text-violet-300 absolute mt-14 px-1 bg-violet-100">
+            Email must be valid.
+          </p>
         </div>
         <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>Password</label>
           <input
             type="password"
-            name="user_password"
-            value={data.user_password}
-            onChange={changeHandler}
-            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
+            name="password"
+            value={data.password}
+            onChange={(event) => validate(setData({ ...data, [event.target.name]: event.target.value }), patterns.password, event)}
           />
-          {/* <div className="dark:text-violet-300 text-slate-600 absolute mt-6 ml-2">
+          <p className="text-violet-300 absolute mt-14 px-1 bg-violet-100">
             Password must be 8 - 20 characters
-          </div> */}
+          </p>
         </div>
         <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>confirm Password</label>
           <input
             type="password"
-            onChange={e=>e.target.value}
-            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
+            onChange={(event) => validate(setData({ ...data, [event.target.name]: event.target.value }), patterns.password, event)}
           />
-          {/* <div className="dark:text-violet-300 text-slate-600 absolute mt-6 ml-2">
+          <p className="text-violet-300 absolute mt-14 px-1 bg-violet-100">
             Password must be confirm
-          </div> */}
+          </p>
         </div>
         <div className="flex flex-col dark:text-violet-200 text-violet-400">
           <label>phoneNumber</label>
           <input
-            type="text"
-            name="user_phone_number"
-            value={data.user_phone_number}
-            onChange={changeHandler}
-            className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-200 to-blue-300 text-violet-700 dark:text-white"
+            type="tel"
+            name="phoneNumber"
+            value={data.phoneNumber}
+            onChange={(event) =>
+              validate(event, patterns.phoneNumber, setData({ ...data, [event.target.name]: event.target.value }))
+            }
           />
-          {/* <div className="dark:text-violet-300 text-slate-600 absolute mt-6 ml-2">
-            phone id requirment
-          </div> */}
+          <p className="text-violet-300 absolute mt-14 px-1 bg-violet-100">
+            phone is requirment
+          </p>
         </div>
         <button
-          type="submit"
+          type="button"
           disabled={!isEnable}
-          onClick={onSubmit}
+          onClick={postHandler}
           className="bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-green-400 to-blue-500 cursor-pointer dark:text-violet-200 text-violet-50 p-1 px-2 mt-5 rounded-md"
         >
           submit

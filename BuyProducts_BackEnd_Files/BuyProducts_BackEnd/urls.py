@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static, serve
 from rest_framework.routers import DefaultRouter
 import BPBE_App.views
+# from BPBE_App.views import AllUsers_Viewset
 
 router = DefaultRouter()
 router.register(r'products', BPBE_App.views.AllProducts_Viewset)
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('BPBE_App.urls')),
     path('api/', include(router.urls)),
+    # path('adduserapi/', AllUsers_Viewset.as_view()),
     # re_path(r'^(?P<path>.*)$', serve,
     #         {'document_root': settings.FRONTEND_ROOT}),
 ]

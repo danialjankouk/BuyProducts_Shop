@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Test Template</title>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js"
+			integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<style>
+			.form-content {
+				width: 80rem;
+				margin: 4rem;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="form-content">
+				<br /><br />
+				<label for="username-input">username: </label>
+				<input id="username-input" type="text" />
+				<br /><br />
+				<label for="email-input">password: </label>
+				<input id="email-input" type="text" />
+				<br /><br />
+				<label for="password-input">mail: </label>
+				<input id="password-input" type="email" />
+				<br /><br />
+				<label for="phone-input">phone: </label>
+				<input id="phone-input" type="text" />
+				<br /><br />
+				<button id="submit-form-btn" onclick="DataSender()">
+					POST Data
+				</button>
+				<br /><br />
+			</div>
+		</main>
+		<script>
+			const usernameInput = document.querySelector("#username-input");
+			const emailInput = document.querySelector("#email-input");
+			const passwordInput = document.querySelector("#password-input");
+			const phoneInput = document.querySelector("#phone-input");
+			function DataSender() {
+				let userData = {
+					user_usname: usernameInput.value,
+					user_password: emailInput.value,
+					user_email: passwordInput.value,
+					user_phone_number: phoneInput.value,
+				};
+				let userData_Json = JSON.stringify(userData);
+				console.log(userData);
+				console.log(JSON.stringify(userData));
+				let url_use = "http://localhost:8000/api/adduser/";
+
+				const response = axios.post(url_use, userData_Json, {
+					headers: { "Content-Type": "application/json" },
+				});
+			}
+		</script>
+	</body>
+</html>
